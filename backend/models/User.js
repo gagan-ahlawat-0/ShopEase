@@ -32,7 +32,8 @@ const userSchema = new mongoose.Schema({
         state:String,
         pinCode:String,
         country:String,
-    }
+    },
+    cart: []
 }, {
     timestamps: true,
 }) 
