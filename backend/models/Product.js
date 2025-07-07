@@ -18,7 +18,6 @@ const productSchema = new mongoose.Schema({
     category: {
         type: String,
         required: true,
-        enum: ['electronics', 'clothing', 'books', 'home', 'sports', 'other'],
     },
     image: {
         type: [String],
@@ -44,7 +43,7 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [{
         user: {
-            type: mongoose.Schema.Types.ObjectId, // ✅ MISSING 'type:'
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
         },
@@ -66,5 +65,7 @@ const productSchema = new mongoose.Schema({
 }, {
     timestamps: true,
 });
+
+productSchema.index({ name: 'text', description: 'text', category: 'text' });
 
 module.exports = mongoose.model('Product', productSchema);
