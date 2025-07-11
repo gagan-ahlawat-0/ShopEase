@@ -10,6 +10,9 @@ const connectDB = require('./utils/db-connection.js');
 const limiter = require('./utils/rateLimit.js');
 const authRoutes = require('./routes/auth-routes.js');
 const userRoutes = require('./routes/user-routes.js');
+const productRoutes = require('./routes/product-routes.js');
+const orderRoutes = require('./routes/order-routes.js');
+const cartRoutes = require('./routes/cart-routes.js');
 
 const app = express();
 
@@ -27,9 +30,9 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 
 app.use('/api/auth', authRoutes);
-// app.use('/api/products', require('./routes/products'));
-// app.use('/api/cart', require('./routes/cart'));
-// app.use('/api/orders', require('./routes/orders'));
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/users', userRoutes);
 
 
