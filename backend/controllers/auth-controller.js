@@ -55,6 +55,11 @@ module.exports.loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid email or password." });
+    }
+
     const token = generateToken(user._id);
     setAuthCookie(res, token);
 
