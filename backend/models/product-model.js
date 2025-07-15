@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { slug } = require('./category-model');
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -66,6 +67,6 @@ const productSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-productSchema.index({ name: 'text', description: 'text', category: 'text' });
+productSchema.index({ name: 'text', description: 'text', category: 'text', slug: 1 });
 
 module.exports = mongoose.model('Product', productSchema);
